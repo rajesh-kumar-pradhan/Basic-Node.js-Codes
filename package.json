@@ -1,0 +1,20 @@
+{
+  "name": "basic-node.js-codes",
+  "version": "1.0.0",
+  "description": "Collection of basic and advanced Node.js/CommonJS codes with DSA in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajesh-kumar-pradhan/Basic-Node.js-Codes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajesh-kumar-pradhan/Basic-Node.js-Codes/issues"
+  },
+  "homepage": "https://github.com/rajesh-kumar-pradhan/Basic-Node.js-Codes#readme"
+}
