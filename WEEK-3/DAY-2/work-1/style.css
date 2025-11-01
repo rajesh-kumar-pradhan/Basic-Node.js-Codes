@@ -1,0 +1,98 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 40px auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: white;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #7fffd4;
+  padding: 30px;
+}
+
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.header-text h1 {
+  margin: 0;
+  color: #000;
+  font-size: 28px;
+}
+
+.header-text h3 {
+  margin: 5px 0;
+  color: #333;
+}
+
+.header-text a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.main {
+  display: flex;
+  padding: 20px 30px;
+}
+
+.left {
+  width: 30%;
+  padding-right: 20px;
+  border-right: 2px solid #f0f0f0;
+}
+
+.right {
+  width: 70%;
+  padding-left: 30px;
+}
+
+h2 {
+  color: #000;
+  font-size: 18px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 8px 0;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.date {
+  color: #777;
+  font-size: 14px;
+}
+
+.bar {
+  background: #eee;
+  border-radius: 5px;
+  height: 6px;
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.fill {
+  background: #000;
+  height: 6px;
+  border-radius: 5px;
+}

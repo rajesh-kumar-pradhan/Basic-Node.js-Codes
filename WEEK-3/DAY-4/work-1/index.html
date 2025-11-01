@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaterialX - John Doe</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Reset & Global Styles --- */
+        :root {
+            --primary-color: #100a8f;
+            --dark-text: #333;
+            --light-text: #666;
+            --bg-light: #f7f7f7;
+            --white: #ffffff;
+            --header-height: 80px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; color: var(--light-text); line-height: 1.7; }
+        h1, h2, h3, h4, h5, h6 { color: var(--dark-text); font-weight: 600; }
+        a { text-decoration: none; color: var(--dark-text); }
+        ul { list-style: none; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 15px; }
+
+        /* --- Header / Navigation (No changes here) --- */
+        .main-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; height: var(--header-height); display: flex; align-items: center; background: transparent; transition: background-color 0.4s ease, box-shadow 0.4s ease; }
+        .main-header.scrolled { background-color: var(--white); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { display: flex; align-items: center; font-size: 24px; font-weight: 700; letter-spacing: 1px; }
+        .logo svg { width: 30px; height: 30px; margin-right: 8px; fill: var(--primary-color); }
+        .main-header.scrolled .logo a { color: var(--dark-text); }
+        .nav-menu { display: flex; align-items: center; }
+        .nav-menu ul { display: flex; }
+        .nav-menu li a { padding: 10px 15px; text-transform: uppercase; font-size: 12px; font-weight: 600; color: var(--white); transition: color 0.3s ease; }
+        .main-header.scrolled .nav-menu li a { color: var(--dark-text); }
+        .nav-menu li a.active, .nav-menu li a:hover { color: var(--primary-color); }
+        .nav-icons a { color: var(--white); margin-left: 20px; font-size: 16px; }
+        .main-header.scrolled .nav-icons a { color: var(--dark-text); }
+        .main-header.scrolled .nav-icons a:hover { color: var(--primary-color); }
+
+
+        /* --- Hero Section (No changes here) --- */
+        .hero
+         {
+         height: 100vh; background-image: linear-gradient(rgba(154, 99, 31, 0.6), rgba(173, 160, 59, 0.512)), url('https://i.imgur.com/uT5h0jA.jpg'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); position: relative; }
+        .hero-content h1 { font-size: 60px; font-weight: 700; color: var(--white); margin: 10px 0; transition: color 0.4s ease; }
+        .hero-content h1 span { color: var(--primary-color); transition: color 0.4s ease; }
+        .hero-content p { font-size: 18px; font-weight: 300; letter-spacing: 1px; margin-bottom: 30px; }
+        #hero-headline.colors-swapped { color: var(--primary-color); }
+        #hero-headline.colors-swapped span { color: var(--white); }
+
+        /* --- ⭐️ Button Styling Changes ⭐️ --- */
+        .btn {
+            
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            font-size: 14px;
+            
+            /* ADDED: Setup for the hover effect */
+            position: relative; /* This is crucial for positioning the bubble */
+            overflow: hidden;   /* This hides the part of the bubble that goes outside the button */
+            z-index: 1;         /* Ensures the button is on the proper layer */
+            transition: color 0.4s ease-in-out; /* Smoothly change text color on hover if needed */
+        }
+
+        .btn:hover {
+            color: var(--white); /* Ensures text color remains white on hover */
+        }
+        
+        /* This is the bubble element, created before the button's content */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2); /* A semi-transparent white bubble */
+            border-radius: 50%;
+            /* Start hidden and transition the size and opacity */
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+            z-index: -1; /* Places the bubble BEHIND the button text */
+        }
+
+        /* This is what happens to the bubble on hover */
+        .btn:hover::before {
+            width: 250px;  /* Make the bubble grow to a large size */
+            height: 250px; /* It will be clipped by the button's 'overflow: hidden' */
+        }
+
+        /* Make sure the text/icon stays on top of the bubble */
+        .btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+        /* --- End of Button Styling Changes --- */
+        
+        .scroll-down { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: var(--white); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); color: var(--dark-text); font-size: 20px; }
+
+        /* --- About Section (No changes here) --- */
+        .about-section { padding: 100px 0; background-color: var(--bg-light); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: center; }
+        .section-title { font-size: 14px; color: var(--primary-color); text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+        .profile-img-container { text-align: center; }
+        .profile-img { max-width: 100%; border-radius: 4px; border: 8px solid var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .my-story p { margin-bottom: 30px; }
+        .personal-info .info-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0e0e0; }
+        .personal-info .info-item .label { font-weight: 600; color: var(--dark-text); }
+        .personal-info .social-icons { margin-top: 25px; display: flex; gap: 15px; }
+        .personal-info .social-icons a { width: 40px; height: 40px; border: 2px solid #e0e0e0; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #b0b0b0; transition: all 0.3s ease; }
+        .personal-info .social-icons a:hover { border-color: var(--primary-color); background-color: var(--primary-color); color: var(--white); }
+        .page-side-button { position: fixed; top: 150px; right: 20px; width: 45px; height: 45px; background: var(--white); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--dark-text); box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer; z-index: 999; }
+
+        /* Responsive Design (No changes here) */
+        @media (max-width: 992px) { .about-grid { grid-template-columns: 1fr 1fr; } .profile-img-container { grid-row: 1 / 2; grid-column: 1 / 3; margin-bottom: 40px; } .nav-menu ul { display: none; } }
+        @media (max-width: 768px) { .hero-content h1 { font-size: 40px; } .hero-content p { font-size: 16px; } .about-grid { grid-template-columns: 1fr; } .profile-img-container { grid-column: 1 / 2; } }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header (No changes here) -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <div class="logo"><a href="#"><svg viewBox="0 0 200 173.205"><path d="M100 0L200 173.205H0L100 0ZM100 34.641L150 122.925H50L100 34.641Z"/></svg>MATERIALX</a></div>
+            <nav class="nav-menu">
+                <ul><li><a href="#about" class="active">About Me</a></li><li><a href="#">Resume</a></li><li><a href="#">Portfolio</a></li><li><a href="#">Team</a></li><li><a href="#">Testimonial</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact</a></li></ul>
+                <div class="nav-icons"><a href="#"><i class="fas fa-search"></i></a><a href="#"><i class="fas fa-ellipsis-v"></i></a></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 id="hero-headline">HI! I'M <span>JOHN DOE</span></h1>
+                <p>UX/UI DESIGNER FROM DHAKA, BANGLADESH</p>
+                <!-- ⭐️ HTML Change: Added <span> around button content ⭐️ -->
+                <a href="#" class="btn" id="hire-me-btn">
+                    <span><i class="fas fa-paper-plane"></i> Hire Me</span>
+                </a>
+            </div>
+            <a href="#about" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+            <div class="page-side-button"><i class="fas fa-search"></i></div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="my-story">
+                        <h3 class="section-title">My Story</h3>
+                        <p>Hello, I'm a UI/UX Designer & Front End Developer from Victoria, Australia. I hold a master degree of Web Design from the World University.</p>
+                        <p>And scrambled it to make a type specimen book. It has survived not only five centuries.</p>
+                        <!-- ⭐️ HTML Change: Added <span> around button content ⭐️ -->
+                        <a href="#" class="btn">
+                            <span><i class="fas fa-download"></i> Download Resume</span>
+                        </a>
+                    </div>
+                    <div class="profile-img-container"><img src="https://i.imgur.com/2s4nLhS.jpg" alt="John Doe Profile Picture" class="profile-img"></div>
+                    <div class="personal-info"><h3 class="section-title">Personal Information</h3><div class="info-item"><span class="label">Name:</span><span class="value">John Doe</span></div><div class="info-item"><span class="label">Age:</span><span class="value">25 Years</span></div><div class="info-item"><span class="label">Phone:</span><span class="value">+0123456789</span></div><div class="info-item"><span class="label">Email:</span><span class="value">email@domain.com</span></div><div class="info-item"><span class="label">Address:</span><span class="value">Dhaka, Bangladesh</span></div><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-google-plus-g"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-pinterest-p"></i></a></div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // No changes to the JavaScript. It all works as before.
+        
+        // --- Code for header scroll effect ---
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- Code for the "Hire Me" button effect ---
+        const hireMeButton = document.getElementById('hire-me-btn');
+        const heroHeadline = document.getElementById('hero-headline');
+
+        const swapColors = () => {
+            heroHeadline.classList.add('colors-swapped');
+        };
+        const revertColors = () => {
+            heroHeadline.classList.remove('colors-swapped');
+        };
+
+        hireMeButton.addEventListener('mouseover', swapColors);
+        hireMeButton.addEventListener('mouseout', revertColors);
+        hireMeButton.addEventListener('touchstart', swapColors);
+        hireMeButton.addEventListener('touchend', revertColors);
+    </script>
+
+</body>
+</html>
